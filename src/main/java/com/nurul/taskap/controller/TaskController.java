@@ -24,4 +24,10 @@ public class TaskController {
         model.addAttribute("tasks", taskDtos);
         return "task/list";
     }
+
+    @GetMapping("/task/add")
+    public String addTaskForm()
+    {
+        return "task/add";
+    }
 }
