@@ -5,21 +5,23 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-
-public class TaskDto {
+public class TaskRequestDto {
 
     private Long id;
     private String name;
     private String description;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startedAt;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endedAt;
+
     private TaskStatus status;
 
-    public TaskDto() {}
+    public TaskRequestDto() {}
 
-    public TaskDto(Long id, String name, String description, Date startedAt, Date endedAt, TaskStatus status) {
+    public TaskRequestDto(Long id, String name, String description, Date startedAt, Date endedAt, TaskStatus status) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -74,5 +76,17 @@ public class TaskDto {
 
     public void setStatus(TaskStatus status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "TaskRequestDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", startedAt=" + startedAt +
+                ", endedAt=" + endedAt +
+                ", status=" + status +
+                '}';
     }
 }

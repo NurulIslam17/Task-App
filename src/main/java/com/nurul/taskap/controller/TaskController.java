@@ -1,10 +1,14 @@
 package com.nurul.taskap.controller;
 
 import com.nurul.taskap.dto.task.TaskDto;
+import com.nurul.taskap.dto.task.TaskRequestDto;
 import com.nurul.taskap.service.TaskService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
 
 import java.util.List;
 
@@ -26,8 +30,19 @@ public class TaskController {
     }
 
     @GetMapping("/task/add")
-    public String addTaskForm()
+    public String addTaskForm(Model model)
     {
+        TaskRequestDto taskRequestDto = new TaskRequestDto();
+        model.addAttribute("taskRequest",taskRequestDto);
         return "task/add";
+    }
+
+    @PostMapping("/task/add")
+    public String addTask(@ModelAttribute("taskRequest") TaskRequestDto taskRequestDto)
+    {
+        System.out.println("Controller");
+        System.out.println(taskRequestDto);
+        taskService.addTask(taskRequestDto);
+        return "redirect:/task/list?success";
     }
 }
