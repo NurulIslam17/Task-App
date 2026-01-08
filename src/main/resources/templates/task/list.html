@@ -28,7 +28,15 @@
 
 
     <!-- TABLE -->
-    <div class="bg-success">
+    <div class="">
+
+        <div th:if="${param.success}">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Success!</strong> New task added successfully.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+
         <table class="table table-bordered table-striped table-hover align-middle mt-4">
             <thead class="table-light">
                 <tr>

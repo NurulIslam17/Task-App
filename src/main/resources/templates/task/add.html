@@ -28,37 +28,54 @@
         <!-- FORM -->
         <div class="py-4">
             <div class="container-md mx-auto">
-                <form action="" method="post" class="border border-dark p-4">
+                <form th:action="@{/task/add}" th:object="${taskRequest}" method="post" role="form" class="border border-dark p-4">
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Title</label>
-                                <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="Task title">
+                                <label for="name" class="form-label">Title</label>
+                                <input type="text" name="name" th:field="*{name}" class="form-control" id="name" placeholder="Task title">
                             </div>
                         </div>
+
                         <div class="col">
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Started AT</label>
-                                <input type="date" name="startedAt" class="form-control" id="startedAt">
+                                <label for="status" class="form-label">Status</label>
+                                <select class="form-select" id="status" th:field="*{status}" aria-label="Default select example">
+                                    <option value="ACTIVE">ACTIVE</option>
+                                    <option value="PENDING" selected>PENDING</option>
+                                    <option value="INPROGRESS">INPROGRESS</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Ended At</label>
-                                <input type="date" name="endedAt" class="form-control" id="endedAT">
-                            </div>
-                        </div>
+
                     </div>
 
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                        <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="5"></textarea>
+                        <textarea class="form-control" name="description" th:field="*{description}" id="exampleFormControlTextarea1" rows="5"></textarea>
                     </div>
 
-                    <div class="my-5 text-end">
-                        <a th:href="@{/task/list}">
-                            <i class="bi bi-save bg-primary text-white p-2 "> <span class="mx-1"> Save Task </span> </i>
-                        </a>
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="startedAt" class="form-label">Started AT</label>
+                                <input type="date" name="startedAt" th:field="*{startedAt}" class="form-control" id="startedAt">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="endedAt" class="form-label">Ended At</label>
+                                <input type="date" name="endedAt" th:field="*{endedAt}" class="form-control" id="endedAT">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="text-end mt-3">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-save  text-white p-2 "> <span class="mx-1"> Save Task </span> </i>
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>

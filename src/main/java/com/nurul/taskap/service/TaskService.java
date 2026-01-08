@@ -1,6 +1,7 @@
 package com.nurul.taskap.service;
 
 import com.nurul.taskap.dto.task.TaskDto;
+import com.nurul.taskap.dto.task.TaskRequestDto;
 import com.nurul.taskap.entity.Task;
 import com.nurul.taskap.repository.TaskRepository;
 import org.modelmapper.ModelMapper;
@@ -26,5 +27,13 @@ public class TaskService {
                 .stream()
                 .map(task -> modelMapper.map(task, TaskDto.class))
                 .toList();
+    }
+
+    public void addTask(TaskRequestDto taskRequestDto) {
+
+        System.out.println("Service");
+        System.out.println(taskRequestDto);
+        Task task = modelMapper.map(taskRequestDto, Task.class);
+        taskRepository.save(task);
     }
 }
