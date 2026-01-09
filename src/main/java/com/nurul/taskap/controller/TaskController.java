@@ -49,4 +49,13 @@ public class TaskController {
         taskService.deleteById(id);
         return "redirect:/task/list?deleted";
     }
+
+    @GetMapping("/task/details/{id}")
+    public String getById(@PathVariable Long id, Model model)
+    {
+        TaskDto taskDto = taskService.getById(id);
+        model.addAttribute("task", taskDto);
+        return "task/details";
+
+    }
 }
