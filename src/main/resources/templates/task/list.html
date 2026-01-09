@@ -70,11 +70,11 @@
                     <td th:switch="${task.status.name()}">
                         <span th:case="'ACTIVE'" class="badge bg-primary" th:text="${task.status}"></span>
                         <span th:case="'PENDING'" class="badge bg-warning" th:text="${task.status}"></span>
-                        <span th:case="'INPROGRESS'" class="badge bg-info" th:text="${task.status}"></span>
-                        <span th:case="'COMPLETED'" class="badge bg-success" th:text="${task.status}"></span>
+                        <span th:case="'IN_PROGRESS'" class="badge bg-info" th:text="${task.status}"></span>
+                        <span th:case="'COMPLETE'" class="badge bg-success" th:text="${task.status}"></span>
                         <span th:case="'MISSED'" class="badge bg-danger" th:text="${task.status}"></span>
-                        <span th:case="'POSTPONDED'" class="badge bg-secondary" th:text="${task.status}"></span>
-                        <span th:case="'BACKLOGED'" class="badge bg-dark" th:text="${task.status}"></span>
+                        <span th:case="'POSTPONE'" class="badge bg-secondary" th:text="${task.status}"></span>
+                        <span th:case="'BACKLOG'" class="badge bg-dark" th:text="${task.status}"></span>
 
                         <span th:case="*"
                               class="badge bg-light text-dark"

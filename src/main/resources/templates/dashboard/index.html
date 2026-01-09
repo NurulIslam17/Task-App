@@ -22,7 +22,7 @@
                             <i class="bi bi-people text-white"></i>
                         </div>
                         <h6>Users</h6>
-                        <h4>0</h4>
+                        <h4 th:text="${dashboard.totalUsers}"></h4>
                     </div>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                                 <i class="bi bi-list-task text-white"></i>
                             </div>
                             <h6>Task</h6>
-                            <h4>75</h4>
+                            <h4 th:text="${dashboard.totalTask}"></h4>
                         </div>
                     </div>
                 </a>
@@ -48,7 +48,7 @@
                             <i class="bi bi-app-indicator text-white"></i>
                         </div>
                         <h6>Active</h6>
-                        <h4>210</h4>
+                        <h4 th:text="${dashboard.activeTask}"></h4>
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@
                             <i class="bi bi-hourglass-split text-white"></i>
                         </div>
                         <h6>Pending</h6>
-                        <h4>210</h4>
+                        <h4 th:text="${dashboard.pendingTask}"></h4>
                     </div>
                 </div>
             </div>
@@ -72,7 +72,7 @@
                             <i class="bi bi-activity text-white"></i>
                         </div>
                         <h6>In Progress</h6>
-                        <h4>210</h4>
+                        <h4 th:text="${dashboard.inProgressTask}"></h4>
                     </div>
                 </div>
             </div>
@@ -84,7 +84,7 @@
                                 <i class="bi bi-check-circle text-white"></i>
                             </div>
                             <h6>Complete</h6>
-                            <h4>210</h4>
+                            <h4 th:text="${dashboard.completeTask}"></h4>
                         </div>
                     </div>
                 </a>
@@ -97,7 +97,7 @@
                             <i class="bi bi-clock text-white"></i>
                         </div>
                         <h6>Missed</h6>
-                        <h4>00</h4>
+                        <h4 th:text="${dashboard.missedTask}"></h4>
                     </div>
                 </div>
             </div>
@@ -108,8 +108,20 @@
                         <div class="card-icon text-danger">
                             <i class="bi bi-arrow-counterclockwise text-white"></i>
                         </div>
+                        <h6>Postpond</h6>
+                        <h4 th:text="${dashboard.postponeTask}"></h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card shadow-sm" style="background: #d8ac1ac7; color: black;">
+                    <div class="card-body text-center">
+                        <div class="card-icon text-danger">
+                            <i class="bi bi-arrow-90deg-left text-black"></i>
+                        </div>
                         <h6>Back Log</h6>
-                        <h4>00</h4>
+                        <h4 th:text="${dashboard.backlogTask}"></h4>
                     </div>
                 </div>
             </div>
