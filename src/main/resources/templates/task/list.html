@@ -61,11 +61,29 @@
                     <td th:text="${taskStatus.count}"></td>
                     <td th:text="${task.name}"></td>
                     <td th:text="${task.description}"></td>
-                    <td th:text="${task.startedAt}"></td>
-                    <td th:text="${task.endedAt}"></td>
-                    <td th:text="${task.status}"></td>
+                    <td>
+                        <span th:text="${#dates.format(task.startedAt, 'dd MMM yyyy')}"></span>
+                    </td>
+                    <td>
+                        <span th:text="${#dates.format(task.endedAt, 'dd MMM yyyy')}"></span>
+                    </td>
+                    <td th:switch="${task.status.name()}">
+                        <span th:case="'ACTIVE'" class="badge bg-primary" th:text="${task.status}"></span>
+                        <span th:case="'PENDING'" class="badge bg-warning" th:text="${task.status}"></span>
+                        <span th:case="'INPROGRESS'" class="badge bg-info" th:text="${task.status}"></span>
+                        <span th:case="'COMPLETED'" class="badge bg-success" th:text="${task.status}"></span>
+                        <span th:case="'MISSED'" class="badge bg-danger" th:text="${task.status}"></span>
+                        <span th:case="'POSTPONDED'" class="badge bg-secondary" th:text="${task.status}"></span>
+                        <span th:case="'BACKLOGED'" class="badge bg-dark" th:text="${task.status}"></span>
+
+                        <span th:case="*"
+                              class="badge bg-light text-dark"
+                              th:text="${task.status}">
+                        </span>
+                    </td>
+
                     <td class="text-center">
-                        <a class="" data-toggle="tooltip" data-placement="top" title="View"  href="">
+                        <a class="" th:href="@{/task/details/{id}(id=${task.id})}" data-toggle="tooltip" data-placement="top" title="View" >
                             <i class="fa fa-eye bg-success text-white p-2 me-1" aria-hidden="true"></i>
                         </a>
                         <a data-toggle="tooltip" data-placement="top" title="Delete"

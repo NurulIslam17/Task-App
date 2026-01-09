@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TaskService {
@@ -36,5 +37,10 @@ public class TaskService {
 
     public void deleteById(Long id) {
         taskRepository.deleteById(id);
+    }
+
+    public TaskDto getById(Long id) {
+        Optional<Task> task =  taskRepository.findById(id);
+        return modelMapper.map(task,TaskDto.class);
     }
 }
