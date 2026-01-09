@@ -37,6 +37,13 @@
             </div>
         </div>
 
+        <div th:if="${param.deleted}">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Deleted!</strong> Task removed from the list.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+
         <table class="table table-bordered table-striped table-hover align-middle mt-4">
             <thead class="table-light">
                 <tr>
@@ -61,13 +68,16 @@
                         <a class="" data-toggle="tooltip" data-placement="top" title="View"  href="">
                             <i class="fa fa-eye bg-success text-white p-2 me-1" aria-hidden="true"></i>
                         </a>
-                        <a class="" data-toggle="tooltip" data-placement="top" title="Delete"  href="">
+                        <a data-toggle="tooltip" data-placement="top" title="Delete"
+                           th:href="@{/task/delete/{id}(id=${task.id})}"
+                           th:data-confirm-delete="|Are you sure you want to delete task titled - '${task.name}'?|"
+                           onclick="return confirm(this.getAttribute('data-confirm-delete'));">
                             <i class="bi bi-trash bg-danger text-white p-2 me-1"></i>
                         </a>
+
                         <a class="" data-toggle="tooltip" data-placement="top" title="Edit"  href="">
                             <i class="bi bi-pencil-square bg-primary text-white p-2"></i>
                         </a>
-
                     </td>
                 </tr>
             </tbody>

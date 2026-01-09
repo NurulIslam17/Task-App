@@ -3,11 +3,10 @@ package com.nurul.taskap.controller;
 import com.nurul.taskap.dto.task.TaskDto;
 import com.nurul.taskap.dto.task.TaskRequestDto;
 import com.nurul.taskap.service.TaskService;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
@@ -40,9 +39,14 @@ public class TaskController {
     @PostMapping("/task/add")
     public String addTask(@ModelAttribute("taskRequest") TaskRequestDto taskRequestDto)
     {
-        System.out.println("Controller");
-        System.out.println(taskRequestDto);
         taskService.addTask(taskRequestDto);
         return "redirect:/task/list?success";
+    }
+
+    @GetMapping("/task/delete/{id}")
+    public String deleteById(@PathVariable Long id)
+    {
+        taskService.deleteById(id);
+        return "redirect:/task/list?deleted";
     }
 }

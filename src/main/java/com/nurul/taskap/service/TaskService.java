@@ -30,10 +30,11 @@ public class TaskService {
     }
 
     public void addTask(TaskRequestDto taskRequestDto) {
-
-        System.out.println("Service");
-        System.out.println(taskRequestDto);
         Task task = modelMapper.map(taskRequestDto, Task.class);
         taskRepository.save(task);
+    }
+
+    public void deleteById(Long id) {
+        taskRepository.deleteById(id);
     }
 }
