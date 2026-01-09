@@ -3,7 +3,6 @@ package com.nurul.taskap.controller;
 import com.nurul.taskap.dto.task.TaskDto;
 import com.nurul.taskap.dto.task.TaskRequestDto;
 import com.nurul.taskap.service.TaskService;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -57,5 +56,18 @@ public class TaskController {
         model.addAttribute("task", taskDto);
         return "task/details";
 
+    }
+
+    @GetMapping("/task/edit/{id}")
+    public String editTask(@PathVariable Long id, Model model) {
+        TaskDto taskDto = taskService.findById(id);
+        model.addAttribute("task", taskDto);
+        return "task/edit";
+    }
+
+    @PostMapping("/task/update/{id}")
+    public String updateById(@PathVariable Long id, @ModelAttribute("task") TaskRequestDto taskRequestDto) {
+        taskService.updateById(id, taskRequestDto);
+        return "redirect:/task/list?updated";
     }
 }
