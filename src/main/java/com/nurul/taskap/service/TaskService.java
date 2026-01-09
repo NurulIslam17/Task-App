@@ -43,4 +43,15 @@ public class TaskService {
         Optional<Task> task =  taskRepository.findById(id);
         return modelMapper.map(task,TaskDto.class);
     }
+
+    public TaskDto findById(Long id) {
+        Optional<Task> task = taskRepository.findById(id);
+        return modelMapper.map(task,TaskDto.class);
+    }
+
+    public void updateById(Long id, TaskRequestDto taskRequestDto) {
+        Task taskData =modelMapper.map(taskRequestDto,Task.class);
+        taskData.setId(id);
+        taskRepository.save(taskData);
+    }
 }

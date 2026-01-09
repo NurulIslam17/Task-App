@@ -50,10 +50,10 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Description</th>
-                    <th>Started At</th>
-                    <th>Ended At</th>
+                    <th class="w-120">Started At</th>
+                    <th class="w-120">Ended At</th>
                     <th>Status</th>
-                    <th class="text-center">Action</th>
+                    <th class="text-center w-150">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -93,7 +93,7 @@
                             <i class="bi bi-trash bg-danger text-white p-2 me-1"></i>
                         </a>
 
-                        <a class="" data-toggle="tooltip" data-placement="top" title="Edit"  href="">
+                        <a class="" data-toggle="tooltip" data-placement="top" title="Edit"  th:href="@{/task/edit/{id}(id=${task.id})}">
                             <i class="bi bi-pencil-square bg-primary text-white p-2"></i>
                         </a>
                     </td>
