@@ -19,7 +19,13 @@
         </div>
 
         <div>
-            <a class="" data-toggle="tooltip" data-placement="top" title="Edit"  th:href="@{/task/add}">
+            <a class="me-1 text-decoration-none" data-toggle="tooltip" data-placement="top" title="Edit"  th:href="@{/dashboard}">
+                <i class="bi bi-grid-fill bg-primary text-white p-2 "> </i>
+            </a>
+            <a class="me-1 text-decoration-none" data-toggle="tooltip" data-placement="top" title="Edit"  th:href="@{/task/list}">
+                <i class="bi bi-arrow-clockwise bg-info text-white p-2 "> </i>
+            </a>
+            <a class="text-decoration-none" data-toggle="tooltip" data-placement="top" title="Edit"  th:href="@{/task/add}">
                 <i class="bi bi-plus-circle bg-success text-white p-2 "> <span class="mx-1"> Add Task </span> </i>
             </a>
         </div>
@@ -50,9 +56,9 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Description</th>
-                    <th class="w-120">Started At</th>
-                    <th class="w-120">Ended At</th>
-                    <th>Status</th>
+                    <th class="w-120 text-center">Started At</th>
+                    <th class="w-120 text-center">Ended At</th>
+                    <th class="w-150 text-center">Status</th>
                     <th class="text-center w-150">Action</th>
                 </tr>
             </thead>
@@ -61,13 +67,13 @@
                     <td th:text="${taskStatus.count}"></td>
                     <td th:text="${task.name}"></td>
                     <td th:text="${task.description}"></td>
-                    <td>
+                    <td class="text-center">
                         <span th:text="${#dates.format(task.startedAt, 'dd MMM yyyy')}"></span>
                     </td>
-                    <td>
+                    <td class="text-center">
                         <span th:text="${#dates.format(task.endedAt, 'dd MMM yyyy')}"></span>
                     </td>
-                    <td th:switch="${task.status.name()}">
+                    <td class="text-center" th:switch="${task.status.name()}">
                         <span th:case="'ACTIVE'" class="badge bg-primary" th:text="${task.status}"></span>
                         <span th:case="'PENDING'" class="badge bg-warning" th:text="${task.status}"></span>
                         <span th:case="'IN_PROGRESS'" class="badge bg-info" th:text="${task.status}"></span>
@@ -83,17 +89,17 @@
                     </td>
 
                     <td class="text-center">
-                        <a class="" th:href="@{/task/details/{id}(id=${task.id})}" data-toggle="tooltip" data-placement="top" title="View" >
+                        <a class="text-decoration-none" th:href="@{/task/details/{id}(id=${task.id})}" data-toggle="tooltip" data-placement="top" title="View" >
                             <i class="fa fa-eye bg-success text-white p-2 me-1" aria-hidden="true"></i>
                         </a>
-                        <a data-toggle="tooltip" data-placement="top" title="Delete"
+                        <a class="text-decoration-none" data-toggle="tooltip" data-placement="top" title="Delete"
                            th:href="@{/task/delete/{id}(id=${task.id})}"
                            th:data-confirm-delete="|Are you sure you want to delete task titled - '${task.name}'?|"
                            onclick="return confirm(this.getAttribute('data-confirm-delete'));">
                             <i class="bi bi-trash bg-danger text-white p-2 me-1"></i>
                         </a>
 
-                        <a class="" data-toggle="tooltip" data-placement="top" title="Edit"  th:href="@{/task/edit/{id}(id=${task.id})}">
+                        <a class="text-decoration-none" data-toggle="tooltip" data-placement="top" title="Edit"  th:href="@{/task/edit/{id}(id=${task.id})}">
                             <i class="bi bi-pencil-square bg-primary text-white p-2"></i>
                         </a>
                     </td>

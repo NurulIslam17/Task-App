@@ -75,4 +75,16 @@ public class TaskDto {
     public void setStatus(TaskStatus status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "TaskDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", startedAt=" + startedAt +
+                ", endedAt=" + endedAt +
+                ", status=" + status +
+                '}';
+    }
 }
