@@ -2,6 +2,7 @@ package com.nurul.taskap.controller;
 
 import com.nurul.taskap.dto.task.TaskDto;
 import com.nurul.taskap.dto.task.TaskRequestDto;
+import com.nurul.taskap.enumType.TaskStatus;
 import com.nurul.taskap.service.TaskService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,12 +21,17 @@ public class TaskController {
     }
 
     @GetMapping("/task/list")
-    public String getTaskList(Model model)
-    {
-        List<TaskDto> taskDtos = taskService.getTaskList();
+    public String getTaskList(@RequestParam(required = false) TaskStatus status, Model model) {
+        List<TaskDto> taskDtos;
+        if (status != null) {
+            taskDtos = taskService.findByStatus(status);
+        } else {
+            taskDtos = taskService.getTaskList();
+        }
         model.addAttribute("tasks", taskDtos);
         return "task/list";
     }
+
 
     @GetMapping("/task/add")
     public String addTaskForm(Model model)
