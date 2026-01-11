@@ -3,11 +3,10 @@ package com.nurul.taskap.controller;
 import com.nurul.taskap.dto.user.UserDto;
 import com.nurul.taskap.dto.user.UserRequestDto;
 import com.nurul.taskap.service.UserService;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -41,6 +40,36 @@ public class UserController {
     {
         userService.addUser(userRequestDto);
         return "redirect:/user/list?success";
+    }
+
+    @GetMapping("/user/details/{id}")
+    public String userDetailById(@PathVariable Long id, Model model)
+    {
+        UserDto userDto = userService.userDetailById(id);
+        model.addAttribute("user", userDto);
+        return "user/details";
+    }
+
+    @GetMapping("/user/delete/{id}")
+    public String deleteById(@PathVariable Long id)
+    {
+        userService.deleteById(id);
+        return "redirect:/user/list?deleted";
+    }
+
+    @GetMapping("/user/edit/{id}")
+    public String editUser(@PathVariable Long id, Model model)
+    {
+        UserDto userDto = userService.editUser(id);
+        model.addAttribute("user", userDto);
+        return "user/edit";
+    }
+
+    @PostMapping("/user/update/{id}")
+    public String updateUser(@ModelAttribute("user") UserRequestDto userRequestDto, @PathVariable Long id)
+    {
+        userService.updateUser(userRequestDto,id);
+        return "redirect:/user/list?updated";
     }
 
 
