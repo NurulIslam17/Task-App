@@ -8,6 +8,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UserService {
     private final UserRepository userRepository;
@@ -29,5 +31,11 @@ public class UserService {
     public void addUser(UserRequestDto userRequestDto) {
         AppUser user = modelMapper.map(userRequestDto, AppUser.class);
         userRepository.save(user);
+    }
+
+    public UserDto userDetailById(Long id) {
+        Optional<AppUser> appUser = userRepository.findById(id);
+        return modelMapper.map(appUser,UserDto.class);
+
     }
 }
