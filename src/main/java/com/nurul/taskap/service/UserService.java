@@ -38,4 +38,8 @@ public class UserService {
         return modelMapper.map(appUser,UserDto.class);
 
     }
+
+    public void deleteById(Long id) {
+        userRepository.deleteById(id);
+    }
 }

@@ -74,7 +74,7 @@
                         </a>
                         <a class="text-decoration-none" data-toggle="tooltip" data-placement="top" title="Delete"
                            th:href="@{/user/delete/{id}(id=${user.id})}"
-                           th:data-confirm-delete="|Are you sure you want to delete task titled - '${user.name}'?|"
+                           th:data-confirm-delete="|Are you sure you want to delete user where - '${user.name}'?|"
                            onclick="return confirm(this.getAttribute('data-confirm-delete'));">
                             <i class="bi bi-trash bg-danger text-white p-2 me-1"></i>
                         </a>
