@@ -6,10 +6,7 @@ import com.nurul.taskap.service.UserService;
 import org.apache.catalina.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -58,6 +55,21 @@ public class UserController {
     {
         userService.deleteById(id);
         return "redirect:/user/list?deleted";
+    }
+
+    @GetMapping("/user/edit/{id}")
+    public String editUser(@PathVariable Long id, Model model)
+    {
+        UserDto userDto = userService.editUser(id);
+        model.addAttribute("user", userDto);
+        return "user/edit";
+    }
+
+    @PostMapping("/user/update/{id}")
+    public String updateUser(@ModelAttribute("user") UserRequestDto userRequestDto, @PathVariable Long id)
+    {
+        userService.updateUser(userRequestDto,id);
+        return "redirect:/user/list?updated";
     }
 
 

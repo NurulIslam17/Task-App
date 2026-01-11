@@ -42,4 +42,16 @@ public class UserService {
     public void deleteById(Long id) {
         userRepository.deleteById(id);
     }
+
+    public UserDto editUser(Long id) {
+        Optional<AppUser> appUser = userRepository.findById(id);
+        return modelMapper.map(appUser,UserDto.class);
+    }
+
+
+    public void updateUser(UserRequestDto userRequestDto, Long id) {
+        AppUser  userData = modelMapper.map(userRequestDto, AppUser.class);
+        userData.setId(id);
+        userRepository.save(userData);
+    }
 }

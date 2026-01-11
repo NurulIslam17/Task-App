@@ -47,6 +47,14 @@
             </div>
         </div>
 
+
+        <div th:if="${param.updated}">
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <strong>Updated!</strong> User Updated successfully.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+
         <table class="table table-bordered table-striped table-hover align-middle mt-4">
             <thead class="table-light">
                 <tr>
