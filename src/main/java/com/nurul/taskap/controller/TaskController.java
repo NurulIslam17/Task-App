@@ -32,6 +32,12 @@ public class TaskController {
         return "task/list";
     }
 
+    @GetMapping("/task/user")
+    public String getTaskList() {
+        return "task/users";
+    }
+
+
 
     @GetMapping("/task/add")
     public String addTaskForm(Model model)
