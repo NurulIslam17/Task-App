@@ -1,5 +1,9 @@
 package com.nurul.taskap.entity;
+import com.nurul.taskap.entity.type.RoleType;
 import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -13,6 +17,10 @@ public class AppUser {
     private String userName;
     private String password;
     private String description;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    Set<RoleType> roles = new HashSet<>();
 
 
     public AppUser() {}
@@ -63,5 +71,13 @@ public class AppUser {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Set<RoleType> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<RoleType> roles) {
+        this.roles = roles;
     }
 }
