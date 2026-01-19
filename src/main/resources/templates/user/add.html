@@ -62,6 +62,22 @@
                         <textarea class="form-control" name="description" th:field="*{description}" id="exampleFormControlTextarea1" rows="5"></textarea>
                     </div>
 
+                    <div class="d-flex ">
+                        <div class="mb-3 form-check mx-2">
+                            <input type="radio" class="form-check-input" name="role" value="ADMIN" id="exampleCheck1">
+                            <label class="form-check-label"  for="exampleCheck1">ADMIN</label>
+                        </div>
+                        <div class="mb-3 form-check mx-2">
+                            <input type="radio" class="form-check-input" name="role" value="TL" id="exampleCheck2">
+                            <label class="form-check-label" for="exampleCheck2">TEAM LEAD</label>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="radio" checked class="form-check-input" name="role" value="EMPLOYEE" id="exampleCheck3">
+                            <label class="form-check-label" for="exampleCheck3">EMPLOYEE</label>
+                        </div>
+                    </div>
+
+
                     <div>
                         <div class="text-end mt-3">
                             <button type="submit" class="btn btn-primary">

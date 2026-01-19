@@ -29,6 +29,12 @@ public class UserService {
     }
 
     public void addUser(UserRequestDto userRequestDto) {
+        AppUser appUser = (AppUser) userRepository.findByName(userRequestDto.getName()).orElse(null);
+        if(appUser != null)
+        {
+            System.out.println("User already exist");
+            throw new IllegalArgumentException("User already exist");
+        }
         AppUser user = modelMapper.map(userRequestDto, AppUser.class);
         userRepository.save(user);
     }
