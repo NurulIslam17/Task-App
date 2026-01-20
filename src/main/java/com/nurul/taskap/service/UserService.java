@@ -35,8 +35,13 @@ public class UserService {
             System.out.println("User already exist");
             throw new IllegalArgumentException("User already exist");
         }
-        AppUser user = modelMapper.map(userRequestDto, AppUser.class);
-        userRepository.save(user);
+
+        AppUser appUserData = new AppUser();
+        appUserData.setName(userRequestDto.getName());
+        appUserData.setUserName(userRequestDto.getUserName());
+        appUserData.setDescription(userRequestDto.getDescription());
+        appUserData.setRoles(userRequestDto.getRoles());
+        userRepository.save(appUserData);
     }
 
     public UserDto userDetailById(Long id) {

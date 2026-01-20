@@ -72,4 +72,16 @@ public class UserRequestDto {
     public void setRoles(Set<RoleType> roles) {
         this.roles = roles;
     }
+
+    @Override
+    public String toString() {
+        return "UserRequestDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", description='" + description + '\'' +
+                ", roles=" + roles +
+                '}';
+    }
 }
