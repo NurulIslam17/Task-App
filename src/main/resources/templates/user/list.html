@@ -63,6 +63,7 @@
                     <th>Email</th>
                     <th>Description</th>
                     <th class="w-150 text-center">Status</th>
+                    <th>Role</th>
                     <th class="text-center w-150">Action</th>
                 </tr>
             </thead>
@@ -74,6 +75,12 @@
                     <td th:text="${user.description}"></td>
                     <td class="text-center">
                         <span  class="badge bg-success" >ACTIVE</span>
+                    </td>
+                    <td>
+                        <span th:each="role, stat : ${user.roles}">
+                            <span class="badge bg-info text-dark" th:text="${role}"></span>
+                            <span th:if="${!stat.last}">, </span>
+                        </span>
                     </td>
 
                     <td class="text-center">

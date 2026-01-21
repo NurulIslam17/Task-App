@@ -3,7 +3,6 @@ package com.nurul.taskap.controller;
 import com.nurul.taskap.dto.user.UserDto;
 import com.nurul.taskap.dto.user.UserRequestDto;
 import com.nurul.taskap.service.UserService;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +22,7 @@ public class UserController {
     @GetMapping("/user/list")
     public String getUserList(Model model) {
         List<UserDto> userDtos = userService.getUserList();
+        System.out.println(userDtos);
         model.addAttribute("users",userDtos);
         return "user/list";
     }
