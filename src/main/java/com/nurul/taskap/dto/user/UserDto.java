@@ -1,5 +1,10 @@
 package com.nurul.taskap.dto.user;
 
+import com.nurul.taskap.entity.type.RoleType;
+
+import java.util.HashSet;
+import java.util.Set;
+
 public class UserDto {
 
     private Long id;
@@ -7,16 +12,18 @@ public class UserDto {
     private String userName;
     private String password;
     private String description;
+    Set<RoleType> roles = new HashSet<>();
 
     public UserDto() {
     }
 
-    public UserDto(Long id, String name, String userName, String password, String description) {
+    public UserDto(Long id, String name, String userName, String password, String description, Set<RoleType> roles) {
         this.id = id;
         this.name = name;
         this.userName = userName;
         this.password = password;
         this.description = description;
+        this.roles = roles;
     }
 
     public Long getId() {
@@ -57,5 +64,25 @@ public class UserDto {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Set<RoleType> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<RoleType> roles) {
+        this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", description='" + description + '\'' +
+                ", roles=" + roles +
+                '}';
     }
 }
