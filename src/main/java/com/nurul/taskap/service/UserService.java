@@ -40,7 +40,6 @@ public class UserService {
         appUserData.setName(userRequestDto.getName());
         appUserData.setUserName(userRequestDto.getUserName());
         appUserData.setDescription(userRequestDto.getDescription());
-        appUserData.setRoles(userRequestDto.getRoles());
         userRepository.save(appUserData);
     }
 

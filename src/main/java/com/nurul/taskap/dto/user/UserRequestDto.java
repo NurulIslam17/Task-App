@@ -11,18 +11,15 @@ public class UserRequestDto {
     private String userName;
     private String password;
     private String description;
-    Set<RoleType> roles = new HashSet<>();
-
 
     public UserRequestDto() { }
 
-    public UserRequestDto(Long id, String name, String userName, String password, String description, Set<RoleType> roles) {
+    public UserRequestDto(Long id, String name, String userName, String password, String description) {
         this.id = id;
         this.name = name;
         this.userName = userName;
         this.password = password;
         this.description = description;
-        this.roles = roles;
     }
 
     public Long getId() {
@@ -63,14 +60,6 @@ public class UserRequestDto {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Set<RoleType> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<RoleType> roles) {
-        this.roles = roles;
     }
 
 }
