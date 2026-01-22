@@ -18,10 +18,11 @@ public class AppUser {
     private String password;
     private String description;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @Enumerated(EnumType.STRING)
-    Set<RoleType> roles = new HashSet<>();
-
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "app_users_roles",
+            joinColumns = @JoinColumn(name = "app_user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private Set<Role> roles;
 
     public AppUser() {}
 
@@ -71,13 +72,5 @@ public class AppUser {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Set<RoleType> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<RoleType> roles) {
-        this.roles = roles;
     }
 }
