@@ -14,8 +14,8 @@ spring:
       ddl-auto: update
     show-sql : true
 
-  security:
-    user:
-      name: admin@app.com
-      password: 12345
+#  security:
+#    user:
+#      name: admin@app.com
+#      password: 12345
 

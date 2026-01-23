@@ -62,4 +62,14 @@ public class UserRequestDto {
         this.description = description;
     }
 
+    @Override
+    public String toString() {
+        return "UserRequestDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
