@@ -29,13 +29,11 @@ public class UserService {
     }
 
     public void addUser(UserRequestDto userRequestDto) {
-        AppUser appUser = (AppUser) userRepository.findByName(userRequestDto.getName()).orElse(null);
+        AppUser appUser =  userRepository.findByName(userRequestDto.getName());
         if(appUser != null)
         {
-            System.out.println("User already exist");
             throw new IllegalArgumentException("User already exist");
         }
-
         AppUser appUserData = new AppUser();
         appUserData.setName(userRequestDto.getName());
         appUserData.setUserName(userRequestDto.getUserName());

@@ -19,3 +19,9 @@ spring:
 #      name: admin@app.com
 #      password: 12345
 
+logging:
+  level:
+    org:
+      springframework:
+        security=DEBUG:
+
