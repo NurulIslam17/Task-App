@@ -2,6 +2,9 @@ package com.nurul.taskap.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "roles")
 public class Role {
@@ -10,6 +13,9 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @ManyToMany(mappedBy = "roles")
+    private List<AppUser> users = new ArrayList<>();
 
     public Role() {
     }

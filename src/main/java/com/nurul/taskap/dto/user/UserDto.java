@@ -1,9 +1,9 @@
 package com.nurul.taskap.dto.user;
 
-import com.nurul.taskap.entity.type.RoleType;
+import com.nurul.taskap.entity.Role;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDto {
 
@@ -12,16 +12,18 @@ public class UserDto {
     private String userName;
     private String password;
     private String description;
+    private List<Role> roles = new ArrayList<>();
 
     public UserDto() {
     }
 
-    public UserDto(Long id, String name, String userName, String password, String description) {
+    public UserDto(Long id, String name, String userName, String password, String description, List<Role> roles) {
         this.id = id;
         this.name = name;
         this.userName = userName;
         this.password = password;
         this.description = description;
+        this.roles = roles;
     }
 
     public Long getId() {
@@ -64,4 +66,11 @@ public class UserDto {
         this.description = description;
     }
 
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 }
