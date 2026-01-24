@@ -2,7 +2,9 @@ package com.nurul.taskap.entity;
 import com.nurul.taskap.entity.type.RoleType;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -22,16 +24,17 @@ public class AppUser {
     @JoinTable(name = "app_users_roles",
             joinColumns = @JoinColumn(name = "app_user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-    private Set<Role> roles;
+    private List<Role> roles = new ArrayList<>();
 
     public AppUser() {}
 
-    public AppUser(Long id, String name, String userName, String password, String description) {
+    public AppUser(Long id, String name, String userName, String password, String description, List<Role> roles) {
         this.id = id;
         this.name = name;
         this.userName = userName;
         this.password = password;
         this.description = description;
+        this.roles = roles;
     }
 
     public Long getId() {
@@ -74,11 +77,11 @@ public class AppUser {
         this.description = description;
     }
 
-    public Set<Role> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 }

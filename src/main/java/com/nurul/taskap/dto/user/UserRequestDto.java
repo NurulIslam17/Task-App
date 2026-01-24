@@ -1,14 +1,17 @@
 package com.nurul.taskap.dto.user;
 
-import com.nurul.taskap.entity.type.RoleType;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 
-import java.util.HashSet;
-import java.util.Set;
 
 public class UserRequestDto {
     private Long id;
+    @NotEmpty(message = "Email should not be empty")
+    @Email
     private String name;
+    @NotEmpty(message = "User name should not be empty")
     private String userName;
+    @NotEmpty(message = "Password should not be empty")
     private String password;
     private String description;
 
