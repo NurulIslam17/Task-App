@@ -1,5 +1,6 @@
 package com.nurul.taskap.security;
 
+import com.nurul.taskap.dto.user.LoginDto;
 import com.nurul.taskap.dto.user.UserRequestDto;
 import com.nurul.taskap.entity.AppUser;
 import com.nurul.taskap.repository.UserRepository;
@@ -27,10 +28,16 @@ public class AuthController {
     }
 
     @GetMapping("/")
-    public String login(Model model)
+    public String login()
     {
         return "auth/login";
     }
+    @PostMapping("/authenticated")
+    public String authenticatedUser()
+    {
+        return "";
+    }
+
 
     @GetMapping("/register")
     public String register(Model model)
@@ -43,8 +50,8 @@ public class AuthController {
     @PostMapping("/register")
     public String register(@Valid @ModelAttribute("userRegister")UserRequestDto userRequestDto, BindingResult result, Model model)
     {
-        Optional<AppUser> existingUser = userRepository.findByName(userRequestDto.getName());
-        if(existingUser.isPresent())
+        AppUser existingUser = userRepository.findByName(userRequestDto.getName());
+        if(existingUser != null)
         {
             model.addAttribute("userRegister",userRequestDto);
             return "auth/register";
@@ -52,6 +59,5 @@ public class AuthController {
         authService.register(userRequestDto);
         return "redirect:/register?success";
     }
-
 
 }
