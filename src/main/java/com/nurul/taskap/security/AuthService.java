@@ -33,7 +33,13 @@ public class AuthService {
         user.setUserName(userRequestDto.getUserName());
         user.setDescription(userRequestDto.getDescription());
         user.setPassword(passwordEncoder.encode(userRequestDto.getPassword()));
-        Role roles = roleRepository.findByName("USER");
+        Role roles = roleRepository.findByName("ROLE_USER");
+        if(roles == null)
+        {
+            roles = new Role();
+            roles.setName("ROLE_USER");
+            roles = roleRepository.save(roles);
+        }
         user.setRoles(Arrays.asList(roles));
         userRepository.save(user);
     }
