@@ -9,12 +9,12 @@
     <div th:replace =~{common/sidebar::sidebar}></div>
 
     <!-- MAIN CONTENT -->
-    <div class="main-content">
+    <div class="main-content" style="overflow: hidden;">
         <h3>Dashboard</h3>
         <p class="text-muted">Dashboard overview</p>
 
         <!-- DASHBOARD CARDS -->
-        <div class="row g-3">
+        <div class="row g-3" sec:authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_TL')">
             <div class="col-md-3">
                 <a class="text-decoration-none" th:href="@{/user/list}">
                     <div class="card shadow-sm" style="background: #071754b3; color: white;">
@@ -142,6 +142,147 @@
                 </a>
             </div>
         </div>
+
+        <!-- User Dashboard-->
+
+        <div class=" g-3 h-100" sec:authorize="hasAnyAuthority('ROLE_USER')" style="display: flex; gap: 30px overflow-x: scroll;">
+
+            <div class="col">
+                <div class="card" style="height: 720px;width: 261px;background: #e69696;padding: 12px;overflow-x: scroll;">
+                    <div class="card-header">
+                        <h6>BackLog</h6>
+                    </div>
+                    <div class="">
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <!-- lots of content -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card overflow-auto" style="height: 720px;width: 261px;background: #f1c713;padding: 12px;">
+                    <div class="card-header">
+                        <h6>Pending</h6>
+                    </div>
+                    <div class="">
+                        <h6>Pending</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <h6>BackLog</h6>
+                        <!-- lots of content -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card overflow-auto" style="height: 720px;width: 261px;background: #05d91d;padding: 12px;">
+                    <div class="card-header">
+                        <h6>Active</h6>
+                    </div>
+                    <div class="">
+                        <h6>Active</h6>
+                        <h6>Active</h6>
+                        <h6>Active</h6>
+                        <h6>Active</h6>
+                        <!-- lots of content -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card overflow-auto" style="height: 720px;width: 261px;background: #1751c5;padding: 12px;">
+                    <div class="card-header">
+                        <h6>In Progress</h6>
+                    </div>
+                    <div class="">
+                        <h6>In Progress</h6>
+                        <h6>In Progress</h6>
+                        <h6>In Progress</h6>
+                        <h6>In Progress</h6>
+                        <!-- lots of content -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card overflow-auto" style="height: 720px;width: 261px;background: #dd1313;padding: 12px;">
+                    <div class="card-header">
+                        <h6>Missed</h6>
+                    </div>
+                    <div class="">
+                        <h6>Missed</h6>
+                        <h6>Missed</h6>
+                        <h6>Missed</h6>
+                        <h6>Missed</h6>
+                        <!-- lots of content -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card overflow-auto" style="height: 720px;width: 261px;background: #dd1313;padding: 12px;">
+                    <div class="card-header">
+                        <h6>Completed</h6>
+                    </div>
+                    <div class="">
+                        <h6>Completed</h6>
+                        <h6>Completed</h6>
+                        <h6>Completed</h6>
+                        <h6>Completed</h6>
+                        <!-- lots of content -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
 
         <!-- SCROLL CONTENT -->
         <div class="mt-5">
