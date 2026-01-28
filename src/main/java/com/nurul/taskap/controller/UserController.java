@@ -22,7 +22,6 @@ public class UserController {
     @GetMapping("/user/list")
     public String getUserList(Model model) {
         List<UserDto> userDtos = userService.getUserList();
-        System.out.println(userDtos);
         model.addAttribute("users",userDtos);
         return "user/list";
     }
