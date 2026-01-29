@@ -5,6 +5,8 @@ import com.nurul.taskap.service.RoleService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -21,8 +23,17 @@ public class RoleController {
     public String allRoles(Model model)
     {
         List<Role> roles = roleService.allRoles();
-        System.out.println(roles);
+        Role roleData = new Role();
+
+        model.addAttribute("roleData",roleData);
         model.addAttribute("roles",roles);
         return "role/list";
+    }
+
+    @PostMapping("/role/list")
+    public String saveRole(@ModelAttribute("roleData") Role role)
+    {
+        roleService.addRole(role);
+        return "redirect:/role/list";
     }
 }
