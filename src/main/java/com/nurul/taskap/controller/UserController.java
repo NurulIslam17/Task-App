@@ -2,6 +2,8 @@ package com.nurul.taskap.controller;
 
 import com.nurul.taskap.dto.user.UserDto;
 import com.nurul.taskap.dto.user.UserRequestDto;
+import com.nurul.taskap.entity.Role;
+import com.nurul.taskap.service.RoleService;
 import com.nurul.taskap.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +15,11 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final RoleService roleService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, RoleService roleService) {
         this.userService = userService;
+        this.roleService = roleService;
     }
 
 
@@ -60,6 +64,8 @@ public class UserController {
     public String editUser(@PathVariable Long id, Model model)
     {
         UserDto userDto = userService.editUser(id);
+        List<Role> roles = roleService.allRoles();
+        model.addAttribute("roles",roles);
         model.addAttribute("user", userDto);
         return "user/edit";
     }
