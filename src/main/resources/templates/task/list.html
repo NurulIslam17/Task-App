@@ -59,7 +59,7 @@
                     <th class="w-120 text-center">Started At</th>
                     <th class="w-120 text-center">Ended At</th>
                     <th class="w-150 text-center">Status</th>
-                    <th class="text-center w-150">Action</th>
+                    <th class="text-center" style="width: 200px;">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -100,7 +100,10 @@
                         </a>
 
                         <a class="text-decoration-none" data-toggle="tooltip" data-placement="top" title="Edit"  th:href="@{/task/edit/{id}(id=${task.id})}">
-                            <i class="bi bi-pencil-square bg-primary text-white p-2"></i>
+                            <i class="bi bi-pencil-square bg-primary text-white p-2 me-1"></i>
+                        </a>
+                        <a class="text-decoration-none" data-toggle="tooltip" data-placement="top" title="Assign"  th:href="@{/task/edit/{id}(id=${task.id})}">
+                            <i class="bi bi-person-fill-check bg-info text-black p-2"></i>
                         </a>
                     </td>
                 </tr>
