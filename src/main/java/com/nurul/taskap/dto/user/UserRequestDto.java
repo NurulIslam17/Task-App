@@ -1,11 +1,7 @@
 package com.nurul.taskap.dto.user;
 
-import com.nurul.taskap.entity.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class UserRequestDto {
@@ -18,17 +14,18 @@ public class UserRequestDto {
     @NotEmpty(message = "Password should not be empty")
     private String password;
     private String description;
-    private List<Role> roles = new ArrayList<>();
+    private Long role;
+
 
     public UserRequestDto() { }
 
-    public UserRequestDto(Long id, String name, String userName, String password, String description, List<Role> roles) {
+    public UserRequestDto(Long id, String name, String userName, String password, String description, Long role) {
         this.id = id;
         this.name = name;
         this.userName = userName;
         this.password = password;
         this.description = description;
-        this.roles = roles;
+        this.role = role;
     }
 
     public Long getId() {
@@ -71,12 +68,12 @@ public class UserRequestDto {
         this.description = description;
     }
 
-    public List<Role> getRoles() {
-        return roles;
+    public Long getRole() {
+        return role;
     }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
+    public void setRole(Long role) {
+        this.role = role;
     }
 
     @Override
@@ -87,7 +84,7 @@ public class UserRequestDto {
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", description='" + description + '\'' +
-                ", roles=" + roles +
+                ", role=" + role +
                 '}';
     }
 }

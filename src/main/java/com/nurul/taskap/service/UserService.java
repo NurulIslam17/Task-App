@@ -45,6 +45,7 @@ public class UserService {
         AppUser appUserData = new AppUser();
         appUserData.setName(userRequestDto.getName());
         appUserData.setUserName(userRequestDto.getUserName());
+        appUserData.setPassword(passwordEncoder.encode("12345"));
         appUserData.setDescription(userRequestDto.getDescription());
         userRepository.save(appUserData);
     }
@@ -69,7 +70,7 @@ public class UserService {
 
         System.out.println(userRequestDto);
         AppUser  userData = modelMapper.map(userRequestDto, AppUser.class);
-        Role roles = roleRepository.findByName("ROLE_TL");
+        Role roles = roleRepository.findById(userRequestDto.getRole()).orElseThrow(()->new IllegalArgumentException("Role Not Found"));
         userData.setPassword(passwordEncoder.encode("12345"));
         userData.setRoles(Arrays.asList(roles));
         userData.setId(id);

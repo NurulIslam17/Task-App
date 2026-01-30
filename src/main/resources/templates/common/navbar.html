@@ -1,6 +1,15 @@
 <nav th:fragment="navbar"  class="navbar navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
         <span class="navbar-brand">Admin Panel</span>
-        <span class="text-white">Admin</span>
+
+        <div class="d-flex gap-4" style=" align-items: center; justify-content: center;">
+            <span class="text-white"
+                  th:text="${#strings.replace( #strings.substringAfter(#authentication.authorities.?[authority.startsWith('ROLE_')][0].authority,'ROLE_'), '_',' ')}"></span>
+            <span class="text-white"> | </span>
+            <span class="text-white" style="border: solid; border-color: white; border-radius: 50%; height: 30px; width: 30px; text-align: center; line-height: 26px;"
+                  th:text="${#strings.toUpperCase(#strings.substring(#authentication.name, 0, 2))}">
+            </span>
+        </div>
+
     </div>
 </nav>

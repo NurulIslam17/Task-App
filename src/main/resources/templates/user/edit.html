@@ -58,10 +58,10 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="role" class="form-label">Role</label>
-                                <select class="form-select" id="role"  aria-label="Default select example">
+                                <select class="form-select" id="role" name="role" aria-label="Default select example">
                                     <option disabled selected>SELECT ROLE</option>
                                     <option th:each="role : ${roles}"
-                                            th:value="${role.name}"
+                                            th:value="${role.id}"
                                             th:text="${role.name}">
                                     </option>
                                 </select>
