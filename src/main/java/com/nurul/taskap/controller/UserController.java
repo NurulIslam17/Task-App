@@ -24,17 +24,21 @@ public class UserController {
 
 
     @GetMapping("/user/list")
-    public String getUserList(Model model) {
-        List<UserDto> userDtos = userService.getUserList();
+    public String getUserList(@RequestParam("role") String role,Model model) {
+        List<UserDto> userDtos = userService.getUserList(role);
         model.addAttribute("users",userDtos);
+        model.addAttribute("role", role);
         return "user/list";
     }
 
     @GetMapping("/user/add")
-    public String addUserForm(Model model)
+    public String addUserForm(@RequestParam("role") String role,Model model)
     {
         UserRequestDto user = new UserRequestDto();
+        List<Role> roles = roleService.allRoles();
+        model.addAttribute("roles",roles);
         model.addAttribute("user",user);
+        model.addAttribute("role", role);
         return "user/add";
     }
 
@@ -42,7 +46,7 @@ public class UserController {
     public String addUser(@ModelAttribute("user") UserRequestDto userRequestDto)
     {
         userService.addUser(userRequestDto);
-        return "redirect:/user/list?success";
+        return "redirect:/user/list?role=ROLE_USER?success";
     }
 
     @GetMapping("/user/details/{id}")

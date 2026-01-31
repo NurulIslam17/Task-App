@@ -22,7 +22,7 @@
             <a class="me-1 text-decoration-none" data-toggle="tooltip" data-placement="top" title="Edit"  th:href="@{/dashboard}">
                 <i class="bi bi-grid-fill bg-primary text-white p-2 "> </i>
             </a>
-            <a class="text-decoration-none" data-toggle="tooltip" data-placement="top" title="Edit"  th:href="@{/user/add}">
+            <a class="text-decoration-none" data-toggle="tooltip" data-placement="top" title="Edit"  th:href="@{/user/add(role=${role})}">
                 <i class="bi bi-plus-circle bg-success text-white p-2 "> <span class="mx-1"> Add User </span> </i>
             </a>
         </div>
