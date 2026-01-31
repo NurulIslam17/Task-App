@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--Header Fragments-->
+<div th:replace =~{common/header::header}></div>
+<body>
+    <!-- NAVBAR -->
+    <div th:replace =~{common/navbar::navbar}></div>
+
+    <!-- SIDEBAR -->
+    <div th:replace =~{common/sidebar::sidebar}></div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h3>Assign Task To User</h3>
+                <p class="text-muted">Fill the form for task assign</p>
+            </div>
+            <div>
+                <a class="text-decoration-none" data-toggle="tooltip" data-placement="top" title="Edit">
+                    <i class="bi bi-list-ol bg-success text-white p-2 "> <span class="mx-1"> Assign Task List </span> </i>
+                </a>
+            </div>
+        </div>
+
+
+        <!-- FORM -->
+        <div class="py-4">
+            <div class="container-md mx-auto">
+                <form th:action="@{/task/assign}" th:object="${taskAssignData}" method="post" role="form" class="border border-dark p-4">
+                    <div class="row">
+                        <p th:text="${taskDto.name}" style="background: #3c79a7; padding: 13px; color: #ffffff; box-shadow: aqua;"></p>
+
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="status" class="form-label">User</label>
+                                <select class="form-select" id="status" th:field="*{user_id}" aria-label="Default select example">
+                                    <option value="ACTIVE">ACTIVE</option>
+                                    <option value="PENDING" selected>PENDING</option>
+                                    <option value="IN_PROGRESS">IN PROGRESS</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="status" class="form-label">Team Lead</label>
+                                <select class="form-select" id="tl_id" th:field="*{tl_id}" aria-label="Default select example">
+                                    <option value="ACTIVE">ACTIVE</option>
+                                    <option value="PENDING" selected>PENDING</option>
+                                    <option value="IN_PROGRESS">IN PROGRESS</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                        <textarea class="form-control" name="description" th:field="*{description}" id="exampleFormControlTextarea1" rows="5"></textarea>
+                    </div>
+
+                    <div>
+                        <div class="text-end mt-3">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-save  text-white p-2 "> <span class="mx-1"> Assign Task </span> </i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    </footer>
+
+</body>
+</html>
