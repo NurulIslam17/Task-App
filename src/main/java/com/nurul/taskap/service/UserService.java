@@ -28,8 +28,8 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public List<UserDto> getUserList() {
-        List<AppUser> users = userRepository.findAll();
+    public List<UserDto> getUserList(String role) {
+        List<AppUser> users = userRepository.findByRoleName(role);
         return users
                 .stream()
                 .map(appUser -> modelMapper.map(appUser, UserDto.class))
@@ -46,6 +46,8 @@ public class UserService {
         appUserData.setName(userRequestDto.getName());
         appUserData.setUserName(userRequestDto.getUserName());
         appUserData.setPassword(passwordEncoder.encode("12345"));
+        Role roles = roleRepository.findById(userRequestDto.getRole()).orElseThrow(()->new IllegalArgumentException("Role Not Found"));
+        appUserData.setRoles(Arrays.asList(roles));
         appUserData.setDescription(userRequestDto.getDescription());
         userRepository.save(appUserData);
     }
