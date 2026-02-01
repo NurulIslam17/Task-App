@@ -47,6 +47,7 @@ public class TaskAssignController {
     public String assignTask(@ModelAttribute("taskAssignData") TaskAssignRequestDto taskAssignRequestDto)
     {
         System.out.println(taskAssignRequestDto);
+        taskAssignService.assignTask(taskAssignRequestDto);
         return "redirect:/task/list";
     }
 }
