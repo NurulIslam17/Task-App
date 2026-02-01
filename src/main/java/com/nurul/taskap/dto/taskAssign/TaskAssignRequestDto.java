@@ -49,4 +49,14 @@ public class TaskAssignRequestDto {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "TaskAssignRequestDto{" +
+                "task_id=" + task_id +
+                ", tl_id=" + tl_id +
+                ", user_id=" + user_id +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
