@@ -46,7 +46,7 @@ public class UserController {
     public String addUser(@ModelAttribute("user") UserRequestDto userRequestDto)
     {
         userService.addUser(userRequestDto);
-        return "redirect:/user/list?role=ROLE_USER?success";
+        return "redirect:/user/list?role=ROLE_USER";
     }
 
     @GetMapping("/user/details/{id}")
@@ -78,7 +78,7 @@ public class UserController {
     public String updateUser(@ModelAttribute("user") UserRequestDto userRequestDto, @PathVariable Long id)
     {
         userService.updateUser(userRequestDto,id);
-        return "redirect:/user/list?updated";
+        return "redirect:/user/list?role=ROLE_USER";
     }
 
 

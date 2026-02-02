@@ -1,6 +1,7 @@
 package com.nurul.taskap.controller;
 
 import com.nurul.taskap.dto.task.TaskDto;
+import com.nurul.taskap.dto.taskAssign.TaskAssignDto;
 import com.nurul.taskap.dto.taskAssign.TaskAssignRequestDto;
 import com.nurul.taskap.dto.user.UserDto;
 import com.nurul.taskap.service.TaskAssignService;
@@ -27,6 +28,16 @@ public class TaskAssignController {
         this.taskService = taskService;
         this.userService = userService;
     }
+
+    @GetMapping("/task/assign/list")
+    public String assignList(TaskAssignDto taskAssignDto, Model model)
+    {
+        List<TaskAssignDto> taskAssignDtos = taskAssignService.assignList();
+        model.addAttribute("assignList", taskAssignDtos);
+        return "taskAssign/list";
+    }
+
+
     @GetMapping("/task/assign")
     public String assignTaskToUser(@RequestParam("id") Long id, Model model)
     {
