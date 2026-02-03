@@ -23,9 +23,9 @@ public class TaskAssignService {
     public void assignTask(TaskAssignRequestDto taskAssignRequestDto) {
 
         TaskAssign taskAssign = new TaskAssign();
-        taskAssign.setTask_id(taskAssignRequestDto.getTask_id());
-        taskAssign.setUser_id(taskAssignRequestDto.getUser_id());
-        taskAssign.setTl_id(taskAssignRequestDto.getTl_id());
+        taskAssign.setTask(taskAssignRequestDto.getTask());
+        taskAssign.setUser(taskAssignRequestDto.getUser());
+        taskAssign.setTeamLead(taskAssignRequestDto.getTeamLead());
         taskAssign.setDescription(taskAssignRequestDto.getDescription());
         taskAssignRepository.save(taskAssign);
     }

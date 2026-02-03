@@ -8,18 +8,28 @@ public class TaskAssign {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long task_id;
-    private Long tl_id;
-    private Long user_id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "task_id", nullable = false)
+    private Task task;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tl_id", nullable = false)
+    private AppUser teamLead;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private AppUser user;
+
     private String description;
 
     public TaskAssign() {}
 
-    public TaskAssign(Long id, Long task_id, Long tl_id, Long user_id, String description) {
+    public TaskAssign(Long id, Task task, AppUser teamLead, AppUser user, String description) {
         this.id = id;
-        this.task_id = task_id;
-        this.tl_id = tl_id;
-        this.user_id = user_id;
+        this.task = task;
+        this.teamLead = teamLead;
+        this.user = user;
         this.description = description;
     }
 
@@ -31,28 +41,28 @@ public class TaskAssign {
         this.id = id;
     }
 
-    public Long getTask_id() {
-        return task_id;
+    public Task getTask() {
+        return task;
     }
 
-    public void setTask_id(Long task_id) {
-        this.task_id = task_id;
+    public void setTask(Task task) {
+        this.task = task;
     }
 
-    public Long getTl_id() {
-        return tl_id;
+    public AppUser getTeamLead() {
+        return teamLead;
     }
 
-    public void setTl_id(Long tl_id) {
-        this.tl_id = tl_id;
+    public void setTeamLead(AppUser teamLead) {
+        this.teamLead = teamLead;
     }
 
-    public Long getUser_id() {
-        return user_id;
+    public AppUser getUser() {
+        return user;
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public void setUser(AppUser user) {
+        this.user = user;
     }
 
     public String getDescription() {

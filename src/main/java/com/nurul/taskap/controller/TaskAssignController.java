@@ -43,7 +43,6 @@ public class TaskAssignController {
     {
         TaskDto taskDto = taskService.findById(id);
         TaskAssignRequestDto taskAssignRequestDto = new TaskAssignRequestDto();
-        taskAssignRequestDto.setTask_id(id);
         List<UserDto> users = userService.getUserList("ROLE_USER");
         List<UserDto> teamLeads = userService.getUserList("ROLE_TL");
 

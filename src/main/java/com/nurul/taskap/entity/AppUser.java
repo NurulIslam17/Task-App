@@ -26,15 +26,23 @@ public class AppUser {
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private List<Role> roles = new ArrayList<>();
 
+    @OneToMany(mappedBy = "teamLead")
+    private List<TaskAssign> assignedByMe = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<TaskAssign> assignedToMe = new ArrayList<>();
+
     public AppUser() {}
 
-    public AppUser(Long id, String name, String userName, String password, String description, List<Role> roles) {
+    public AppUser(Long id, String name, String userName, String password, String description, List<Role> roles, List<TaskAssign> assignedByMe, List<TaskAssign> assignedToMe) {
         this.id = id;
         this.name = name;
         this.userName = userName;
         this.password = password;
         this.description = description;
         this.roles = roles;
+        this.assignedByMe = assignedByMe;
+        this.assignedToMe = assignedToMe;
     }
 
     public Long getId() {
@@ -83,5 +91,21 @@ public class AppUser {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public List<TaskAssign> getAssignedByMe() {
+        return assignedByMe;
+    }
+
+    public void setAssignedByMe(List<TaskAssign> assignedByMe) {
+        this.assignedByMe = assignedByMe;
+    }
+
+    public List<TaskAssign> getAssignedToMe() {
+        return assignedToMe;
+    }
+
+    public void setAssignedToMe(List<TaskAssign> assignedToMe) {
+        this.assignedToMe = assignedToMe;
     }
 }
