@@ -2,7 +2,10 @@ package com.nurul.taskap.entity;
 
 import com.nurul.taskap.enumType.TaskStatus;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "tasks")
@@ -18,15 +21,19 @@ public class Task {
     @Enumerated(value = EnumType.STRING)
     private TaskStatus status;
 
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TaskAssign> taskAssigns = new ArrayList<>();
+
     public Task() {}
 
-    public Task(Long id, String name, String description, Date startedAt, Date endedAt, TaskStatus status) {
+    public Task(Long id, String name, String description, Date startedAt, Date endedAt, TaskStatus status, List<TaskAssign> taskAssigns) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.startedAt = startedAt;
         this.endedAt = endedAt;
         this.status = status;
+        this.taskAssigns = taskAssigns;
     }
 
     public Long getId() {
@@ -75,5 +82,13 @@ public class Task {
 
     public void setStatus(TaskStatus status) {
         this.status = status;
+    }
+
+    public List<TaskAssign> getTaskAssigns() {
+        return taskAssigns;
+    }
+
+    public void setTaskAssigns(List<TaskAssign> taskAssigns) {
+        this.taskAssigns = taskAssigns;
     }
 }
