@@ -64,9 +64,9 @@
             <tbody>
             <tr th:each="assignList,assignStatus : ${assignList}">
                 <td th:text="${assignStatus.count}"></td>
-                <td th:text="${assignList.task_id}"></td>
-                <td th:text="${assignList.user_id}"></td>
-                <td th:text="${assignList.tl_id}"></td>
+                <td th:text="${assignList.task.name}"></td>
+                <td th:text="${assignList.user.name}"></td>
+                <td th:text="${assignList.teamLead.name}"></td>
                 <td th:text="${assignList.description}"></td>
                 <td class="text-center">
                     <a class="text-decoration-none" data-toggle="tooltip" data-placement="top" title="Edit">
