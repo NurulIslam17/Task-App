@@ -1,19 +1,24 @@
 package com.nurul.taskap.dto.taskAssign;
 
+import com.nurul.taskap.entity.AppUser;
+import com.nurul.taskap.entity.Task;
+
 public class TaskAssignDto {
     private Long id;
-    private Long task_id;
-    private Long tl_id;
-    private Long user_id;
+    private Task task;
+    private AppUser teamLead;
+    private AppUser user;
     private String description;
 
-    public TaskAssignDto() {}
+    public TaskAssignDto() {
 
-    public TaskAssignDto(Long id, Long task_id, Long tl_id, Long user_id, String description) {
+    }
+
+    public TaskAssignDto(Long id, Task task, AppUser teamLead, AppUser user, String description) {
         this.id = id;
-        this.task_id = task_id;
-        this.tl_id = tl_id;
-        this.user_id = user_id;
+        this.task = task;
+        this.teamLead = teamLead;
+        this.user = user;
         this.description = description;
     }
 
@@ -25,28 +30,28 @@ public class TaskAssignDto {
         this.id = id;
     }
 
-    public Long getTask_id() {
-        return task_id;
+    public Task getTask() {
+        return task;
     }
 
-    public void setTask_id(Long task_id) {
-        this.task_id = task_id;
+    public void setTask(Task task) {
+        this.task = task;
     }
 
-    public Long getTl_id() {
-        return tl_id;
+    public AppUser getTeamLead() {
+        return teamLead;
     }
 
-    public void setTl_id(Long tl_id) {
-        this.tl_id = tl_id;
+    public void setTeamLead(AppUser teamLead) {
+        this.teamLead = teamLead;
     }
 
-    public Long getUser_id() {
-        return user_id;
+    public AppUser getUser() {
+        return user;
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public void setUser(AppUser user) {
+        this.user = user;
     }
 
     public String getDescription() {
@@ -55,5 +60,16 @@ public class TaskAssignDto {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "TaskAssignDto{" +
+                "id=" + id +
+                ", task=" + task +
+                ", teamLead=" + teamLead +
+                ", user=" + user +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

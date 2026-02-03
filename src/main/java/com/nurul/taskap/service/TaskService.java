@@ -24,7 +24,7 @@ public class TaskService {
     }
 
     public List<TaskDto> getTaskList() {
-        List<Task> taskList = taskRepository.findAll();
+        List<Task> taskList = taskRepository.findUnassignedTasks();
         return taskList
                 .stream()
                 .map(task -> modelMapper.map(task, TaskDto.class))
