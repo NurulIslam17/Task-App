@@ -53,10 +53,11 @@ public class UserService {
     }
 
     public UserDto userDetailById(Long id) {
-        Optional<AppUser> appUser = userRepository.findById(id);
+        AppUser appUser = userRepository.findById(id).orElseThrow(()->new RuntimeException("App User Not Found"));
         return modelMapper.map(appUser,UserDto.class);
 
     }
+
 
     public void deleteById(Long id) {
         userRepository.deleteById(id);
@@ -77,5 +78,9 @@ public class UserService {
         userData.setRoles(Arrays.asList(roles));
         userData.setId(id);
         userRepository.save(userData);
+    }
+
+    public AppUser findById(Long userId) {
+        return userRepository.findById(userId).orElseThrow(()->new RuntimeException("User Not Found"));
     }
 }
