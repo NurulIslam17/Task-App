@@ -45,9 +45,11 @@ public class TaskService {
         return modelMapper.map(task,TaskDto.class);
     }
 
-    public TaskDto findById(Long id) {
-        Optional<Task> task = taskRepository.findById(id);
-        return modelMapper.map(task,TaskDto.class);
+
+
+    public Task findById(Long id) {
+        Task task = taskRepository.findById(id).orElseThrow(() ->new IllegalArgumentException("Task not found."));
+        return task;
     }
 
     public void updateById(Long id, TaskRequestDto taskRequestDto) {

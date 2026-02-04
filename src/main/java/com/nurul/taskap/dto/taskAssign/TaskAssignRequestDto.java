@@ -1,48 +1,45 @@
 package com.nurul.taskap.dto.taskAssign;
 
-import com.nurul.taskap.entity.AppUser;
-import com.nurul.taskap.entity.Task;
-
 public class TaskAssignRequestDto {
 
-    private Task task;
-    private AppUser teamLead;
-    private AppUser user;
+    private Long taskId;
+    private Long teamLeadId;
+    private Long userId;
     private String description;
 
 
     public TaskAssignRequestDto() {
     }
 
-    public TaskAssignRequestDto(Task task, AppUser teamLead, AppUser user, String description) {
-        this.task = task;
-        this.teamLead = teamLead;
-        this.user = user;
+    public TaskAssignRequestDto(Long taskId, Long teamLeadId, Long userId, String description) {
+        this.taskId = taskId;
+        this.teamLeadId = teamLeadId;
+        this.userId = userId;
         this.description = description;
     }
 
-    public Task getTask() {
-        return task;
+    public Long getTaskId() {
+        return taskId;
     }
 
-    public void setTask(Task task) {
-        this.task = task;
+    public void setTaskId(Long taskId) {
+        this.taskId = taskId;
     }
 
-    public AppUser getTeamLead() {
-        return teamLead;
+    public Long getTeamLeadId() {
+        return teamLeadId;
     }
 
-    public void setTeamLead(AppUser teamLead) {
-        this.teamLead = teamLead;
+    public void setTeamLeadId(Long teamLeadId) {
+        this.teamLeadId = teamLeadId;
     }
 
-    public AppUser getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(AppUser user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getDescription() {
@@ -51,5 +48,15 @@ public class TaskAssignRequestDto {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "TaskAssignRequestDto{" +
+                "taskId=" + taskId +
+                ", teamLeadId=" + teamLeadId +
+                ", userId=" + userId +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

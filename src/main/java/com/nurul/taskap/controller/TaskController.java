@@ -2,6 +2,7 @@ package com.nurul.taskap.controller;
 
 import com.nurul.taskap.dto.task.TaskDto;
 import com.nurul.taskap.dto.task.TaskRequestDto;
+import com.nurul.taskap.entity.Task;
 import com.nurul.taskap.enumType.TaskStatus;
 import com.nurul.taskap.service.TaskService;
 import org.springframework.stereotype.Controller;
@@ -65,7 +66,7 @@ public class TaskController {
 
     @GetMapping("/task/edit/{id}")
     public String editTask(@PathVariable Long id, Model model) {
-        TaskDto taskDto = taskService.findById(id);
+        Task taskDto = taskService.findById(id);
         model.addAttribute("task", taskDto);
         return "task/edit";
     }

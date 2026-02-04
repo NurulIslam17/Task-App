@@ -4,6 +4,7 @@ import com.nurul.taskap.dto.task.TaskDto;
 import com.nurul.taskap.dto.taskAssign.TaskAssignDto;
 import com.nurul.taskap.dto.taskAssign.TaskAssignRequestDto;
 import com.nurul.taskap.dto.user.UserDto;
+import com.nurul.taskap.entity.Task;
 import com.nurul.taskap.service.TaskAssignService;
 import com.nurul.taskap.service.TaskService;
 import com.nurul.taskap.service.UserService;
@@ -41,13 +42,14 @@ public class TaskAssignController {
     @GetMapping("/task/assign")
     public String assignTaskToUser(@RequestParam("id") Long id, Model model)
     {
-        TaskDto taskDto = taskService.findById(id);
+        Task task = taskService.findById(id);
         TaskAssignRequestDto taskAssignRequestDto = new TaskAssignRequestDto();
+        taskAssignRequestDto.setTaskId(id);
         List<UserDto> users = userService.getUserList("ROLE_USER");
         List<UserDto> teamLeads = userService.getUserList("ROLE_TL");
 
         model.addAttribute("taskAssignData", taskAssignRequestDto);
-        model.addAttribute("taskDto", taskDto);
+        model.addAttribute("taskDto", task);
         model.addAttribute("users",users);
         model.addAttribute("tls",teamLeads);
         return "taskAssign/add";

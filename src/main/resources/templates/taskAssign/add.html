@@ -31,12 +31,12 @@
                 <form th:action="@{/task/assign}" th:object="${taskAssignData}" method="post" role="form" class="border border-dark p-4">
                     <div class="row">
                         <p th:text="${taskDto.name}" style="background: #3c79a7; padding: 13px; color: #ffffff; box-shadow: aqua;"></p>
-                        <input  type="hidden" name="task_id" th:field="*{task_id}" class="form-control" id="task_id">
+                        <input  type="hidden" name="task_id" th:field="*{taskId}" class="form-control" id="task_id">
 
                         <div class="col">
                             <div class="mb-3">
-                                <label for="user" class="form-label">User</label>
-                                <select class="form-select" id="user" name="user_id" aria-label="Default select example">
+                                <label for="userId" class="form-label">User</label>
+                                <select class="form-select" id="userId" name="userId" aria-label="Default select example">
                                     <option >Select Assignee</option>
                                     <option  th:each="user : ${users}" th:value="${user.id}" th:text="${user.name}"></option>
                                 </select>
@@ -45,8 +45,8 @@
 
                         <div class="col">
                             <div class="mb-3">
-                                <label for="tl_id" class="form-label">Team Lead</label>
-                                <select class="form-select" id="tl_id" name="tl_id" aria-label="Default select example">
+                                <label for="teamLeadId" class="form-label">Team Lead</label>
+                                <select class="form-select" id="teamLeadId" name="teamLeadId" aria-label="Default select example">
                                     <option >SELECT TEAM LEAD</option>
                                     <option th:each="tl : ${tls}" th:value="${tl.id}" th:text="${tl.name}" ></option>
                                 </select>
