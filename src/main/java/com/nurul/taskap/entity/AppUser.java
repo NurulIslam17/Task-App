@@ -108,4 +108,18 @@ public class AppUser {
     public void setAssignedToMe(List<TaskAssign> assignedToMe) {
         this.assignedToMe = assignedToMe;
     }
+
+    @Override
+    public String toString() {
+        return "AppUser{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", description='" + description + '\'' +
+                ", roles=" + roles +
+                ", assignedByMe=" + assignedByMe +
+                ", assignedToMe=" + assignedToMe +
+                '}';
+    }
 }

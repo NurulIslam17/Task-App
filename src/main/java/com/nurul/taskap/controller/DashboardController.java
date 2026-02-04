@@ -19,6 +19,7 @@ public class DashboardController {
     public String index(Model model)
     {
         DashboardCountProjection dashboardCountProjection = dashboardService.getDashboardCounts();
+
         model.addAttribute("dashboard",dashboardCountProjection);
         return "dashboard/index";
     }

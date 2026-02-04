@@ -13,8 +13,8 @@
         <h3>Dashboard</h3>
         <p class="text-muted">Dashboard overview</p>
 
-        <!-- DASHBOARD CARDS -->
-        <div class="row g-3" sec:authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_TL')">
+        <!--ADMIN DASHBOARD CARDS -->
+        <div class="row g-3" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
             <div class="col-md-3">
                 <a class="text-decoration-none" th:href="@{/user/list}">
                     <div class="card shadow-sm" style="background: #071754b3; color: white;">
@@ -143,6 +143,53 @@
             </div>
         </div>
 
+
+        <!--TL DASHBOARD CARDS -->
+        <div class="row g-3" sec:authorize="hasAnyAuthority('ROLE_TL')">
+            <div class="col-md-3">
+                <a class="text-decoration-none">
+                    <div class="card shadow-sm" style="background: #071754b3; color: white;">
+                        <div class="card-body text-center">
+                            <div class="card-icon text-primary">
+                                <i class="bi bi-people text-white"></i>
+                            </div>
+                            <h6>Users</h6>
+                            <h4 th:text="${dashboard.totalUsers}"></h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-3">
+                <a class="text-decoration-none">
+                    <div class="card shadow-sm" style="background: #134653b8; color: white;">
+                        <div class="card-body text-center">
+                            <div class="card-icon text-success">
+                                <i class="bi bi-list-task text-white"></i>
+                            </div>
+                            <h6>Task</h6>
+                            <h4 th:text="${dashboard.totalTask}"></h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-3">
+
+                <a class="text-decoration-none">
+                    <div class="card shadow-sm" style="background: #4987c4e8; color:white">
+                        <div class="card-body text-center">
+                            <div class="card-icon text-warning">
+                                <i class="bi bi-app-indicator text-white"></i>
+                            </div>
+                            <h6>Active</h6>
+                            <h4 th:text="${dashboard.activeTask}"></h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
         <!-- User Dashboard-->
 
         <div class="" sec:authorize="hasAnyAuthority('ROLE_USER')" style="display: flex; gap: 20px; overflow-x: scroll;!important">
