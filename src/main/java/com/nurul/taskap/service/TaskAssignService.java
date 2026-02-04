@@ -9,6 +9,9 @@ import com.nurul.taskap.entity.Task;
 import com.nurul.taskap.entity.TaskAssign;
 import com.nurul.taskap.repository.TaskAssignRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -44,10 +47,28 @@ public class TaskAssignService {
 
 
     public List<TaskAssignDto> assignList() {
-        List<TaskAssign> taskAssignDtos = taskAssignRepository.findAll();
+
+        List<TaskAssign> taskAssignDtos;
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String username = userDetails.getUsername();
+
+        AppUser appUser = userService.findByName(username);
+        Long id = appUser.getId();
+        //  check ROLE_TL
+        boolean isTeamLead = authentication.getAuthorities()
+                .stream()
+                .anyMatch(auth -> auth.getAuthority().equals("ROLE_TL"));
+        if (!isTeamLead) {
+            taskAssignDtos = taskAssignRepository.findAll();
+        }else {
+            taskAssignDtos = taskAssignRepository.findByTeamLead(id);
+        }
+
         return taskAssignDtos
                 .stream()
-                .map(taskAssign ->modelMapper.map(taskAssign,TaskAssignDto.class))
+                .map(taskAssign -> modelMapper.map(taskAssign, TaskAssignDto.class))
                 .toList();
     }
 }
