@@ -91,4 +91,17 @@ public class Task {
     public void setTaskAssigns(List<TaskAssign> taskAssigns) {
         this.taskAssigns = taskAssigns;
     }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", startedAt=" + startedAt +
+                ", endedAt=" + endedAt +
+                ", status=" + status +
+                ", taskAssigns=" + taskAssigns +
+                '}';
+    }
 }
