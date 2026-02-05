@@ -8,6 +8,7 @@ import com.nurul.taskap.entity.AppUser;
 import com.nurul.taskap.entity.Task;
 import com.nurul.taskap.entity.TaskAssign;
 import com.nurul.taskap.repository.TaskAssignRepository;
+import com.nurul.taskap.utils.SecurityUtil;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,12 +24,14 @@ public class TaskAssignService {
     private final TaskService taskService;
     private final UserService userService;
     private final ModelMapper modelMapper;
+    private final SecurityUtil securityUtil;
 
-    public TaskAssignService(TaskAssignRepository taskAssignRepository, TaskService taskService, UserService userService, ModelMapper modelMapper) {
+    public TaskAssignService(TaskAssignRepository taskAssignRepository, TaskService taskService, UserService userService, ModelMapper modelMapper, SecurityUtil securityUtil) {
         this.taskAssignRepository = taskAssignRepository;
         this.taskService = taskService;
         this.userService = userService;
         this.modelMapper = modelMapper;
+        this.securityUtil = securityUtil;
     }
 
     public void assignTask(TaskAssignRequestDto taskAssignRequestDto) {
@@ -49,23 +52,16 @@ public class TaskAssignService {
     public List<TaskAssignDto> assignList() {
 
         List<TaskAssign> taskAssignDtos;
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        String username = userDetails.getUsername();
-
+        String username = securityUtil.getCurrentUsername();
         AppUser appUser = userService.findByName(username);
         Long id = appUser.getId();
         //  check ROLE_TL
-        boolean isTeamLead = authentication.getAuthorities()
-                .stream()
-                .anyMatch(auth -> auth.getAuthority().equals("ROLE_TL"));
+        boolean isTeamLead = securityUtil.hasRole("ROLE_TL");
         if (!isTeamLead) {
             taskAssignDtos = taskAssignRepository.findAll();
         }else {
             taskAssignDtos = taskAssignRepository.findByTeamLead(id);
         }
-
         return taskAssignDtos
                 .stream()
                 .map(taskAssign -> modelMapper.map(taskAssign, TaskAssignDto.class))
