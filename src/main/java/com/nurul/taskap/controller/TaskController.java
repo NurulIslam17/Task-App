@@ -76,4 +76,15 @@ public class TaskController {
         taskService.updateById(id, taskRequestDto);
         return "redirect:/task/list?updated";
     }
+
+    @PostMapping("/task/handle-status")
+    public String handleStatus(
+            @RequestParam Long id,
+            @RequestParam String status,
+            @RequestParam String description
+    ) {
+        System.out.println(id);
+        return "redirect:/task/list";
+    }
+
 }
