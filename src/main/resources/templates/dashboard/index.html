@@ -295,7 +295,9 @@
                                     <a class="text-decoration-none" th:href="@{/task/details/{id}(id=${task.id})}" data-toggle="tooltip" data-placement="top" title="View" >
                                         <i class="fa fa-eye bg-success text-white p-2 me-1" aria-hidden="true"></i>
                                     </a>
-                                    <button class="btn btn-success">Update</button>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#handleStatus"  th:data-id="${task.id}">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -495,9 +497,66 @@
         </div>
     </div>
 
+
+    <!-- Modal -->
+    <div class="modal fade" id="handleStatus" tabindex="-1">
+        <div class="modal-dialog">
+            <form id="statusForm" method="post" class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h5 class="modal-title">Update Status</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+
+                    <!-- hidden ID -->
+                    <input type="hidden" name="id" id="taskId">
+
+                    <div class="mb-3">
+                        <label class="form-label">Status</label>
+                        <select name="status" class="form-select" required>
+                            <option value="ACTIVE">ACTIVE</option>
+                            <option value="PENDING">PENDING</option>
+                            <option value="IN_PROGRESS">IN PROGRESS</option>
+                            <option value="COMPLETE">COMPLETE</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <textarea name="description" class="form-control"></textarea>
+                    </div>
+
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
     <footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     </footer>
+
+    <script>
+        document.getElementById('handleStatus').addEventListener('show.bs.modal', function (event) {
+
+                const button = event.relatedTarget;
+                const taskId = button.getAttribute('data-id');
+
+                document.getElementById('taskId').value = taskId;
+            });
+    </script>
+
 
 </body>
 </html>
